@@ -19,7 +19,7 @@ class TimeTest {
 		assertThrows(StringIndexOutOfBoundsException.class, ()->{Time.getTotalSeconds("10:00");});
 	}
 	@ParameterizedTest
-	@ValueSource(strings = {"00:21:11", "33:59:59", "14:22:54"})
+	@ValueSource(strings = {"00:21:11", "14:59:59", "14:22:54"})
 	public void testGetTotalSecondsBoundry(String candidate)
 	{
 		int seconds = Time.getTotalSeconds(candidate);
@@ -37,7 +37,7 @@ class TimeTest {
 		assertThrows(NumberFormatException.class, ()->{Time.getSeconds("abcdefghijk");});
 	}
 	@ParameterizedTest
-	@ValueSource(strings = {"00:21:11", "11:59:79", "14:22:54"})
+	@ValueSource(strings = {"00:21:11", "11:59:49", "14:22:54"})
 	public void testGetSecondsBoundry(String candidate)
 	{
 		int seconds = Time.getSeconds(candidate);
@@ -55,7 +55,7 @@ class TimeTest {
 		assertThrows(StringIndexOutOfBoundsException.class, ()->{Time.getTotalMinutes("15");});
 	}
 	@ParameterizedTest
-	@ValueSource(strings = {"00:21:11", "11:79:29", "14:22:54"})
+	@ValueSource(strings = {"00:21:11", "11:19:29", "14:22:54"})
 	void testGetTotalMinutesBoundry(String candidate) {
 		int mins = Time.getTotalMinutes(candidate);
 		assertTrue(mins >= 0 && mins <= 59, "The minutes were out of bounds.");
@@ -72,7 +72,7 @@ class TimeTest {
 		assertThrows(NumberFormatException.class, ()->{Time.getTotalHours("abcdefghijk");});
 	}
 	@ParameterizedTest
-	@ValueSource(strings = {"00:21:11", "11:79:29", "14:22:54"})
+	@ValueSource(strings = {"00:21:11", "11:19:29", "14:22:54"})
 	void testGetTotalHoursBoundry(String candidate) {
 		int hours = Time.getTotalHours(candidate);
 		assertTrue(hours >= 0 && hours <= 23, "The hours were out of bounds.");
@@ -80,7 +80,7 @@ class TimeTest {
 
 	@Test
 	void testGetMillisecondsGood() {
-		int millis = Time.getMilliseconds("22:14:12:222");
+		int millis = Time.getMilliseconds("22:14:12:22");
 		assertTrue(millis == 222, "The milliseconds were not calculated properly.");
 	}
 	@Test
