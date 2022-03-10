@@ -80,7 +80,7 @@ class TimeTest {
 
 	@Test
 	void testGetMillisecondsGood() {
-		int millis = Time.getMilliseconds("22:14:12:22");
+		int millis = Time.getMilliseconds("22:14:12:222");
 		assertTrue(millis == 222, "The milliseconds were not calculated properly.");
 	}
 	@Test
